@@ -1,20 +1,5 @@
 {
     "User": true,
     "Role": true,
-    "Permission": true,
-    "Product": true,
-    "Stock": true,
-    "SupplierPurchaseOrder": true,
-    "Invoice": true,
-    "Purgatory": true,
-    "Order": true,
-    "PickAndPack": true,
-    "Company": true,
-    "WarehouseGroup": true,
-    "Channel": true,
-    "VariantType": true,
-    "Tag": true,
-    "Supplier": true,
-    "Category": true,
-    "UnitOfMeasure": true
+    "Permission": true
 }

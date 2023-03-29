@@ -31,6 +31,11 @@ class ModuleGeneratorService
     public string $table = '';
 
     /**
+     * @var bool
+     */
+    public bool $useAlternativeRouteParameterBinding = false;
+
+    /**
      * @param string $module
      * @param string $model
      * @return bool
@@ -56,7 +61,10 @@ class ModuleGeneratorService
         $this->createController();
         $this->createViews();
         $this->updateRoute();
-        $this->updateRouteServiceProvider();
+
+        if($this->useAlternativeRouteParameterBinding) {
+            $this->updateRouteServiceProvider();
+        }
         $this->createMigration();
 
         return true;
@@ -87,6 +95,7 @@ class ModuleGeneratorService
         $this->module = $this->pascalCase($module);
         $this->model = $this->pascalCase($model);
         $this->table = $this->snakeCase(Str::plural($this->model));
+        $this->useAlternativeRouteParameterBinding = false;
     }
 
     /**
@@ -169,7 +178,12 @@ class ModuleGeneratorService
     private function updateRoute(): void
     {
         $file = $this->getWebRouteFile();
-        $codeToAppend = "\t" . "Route::resource('{{ROUTE}}', '{{MODEL}}Controller', ['parameters' => ['{{ROUTE}}' => '{{ROUTE_PARAMETER_BINDING}}']]);" . "\n";
+
+        if($this->useAlternativeRouteParameterBinding) {
+            $codeToAppend = "\t" . "Route::resource('{{ROUTE}}', '{{MODEL}}Controller', ['parameters' => ['{{ROUTE}}' => '{{ROUTE_PARAMETER_BINDING}}']]);" . "\n";
+        } else {
+            $codeToAppend = "\t" . "Route::resource('{{ROUTE}}', '{{MODEL}}Controller');" . "\n";
+        }
 
         $codeToAppend = str_replace(
             [
@@ -197,7 +211,11 @@ class ModuleGeneratorService
      */
     private function createController(): void
     {
-        $file = $this->getFileContent('controller');
+        if($this->useAlternativeRouteParameterBinding) {
+            $file = $this->getFileContent('controller_route_parameter_binding');
+        } else {
+            $file = $this->getFileContent('controller');
+        }
         file_put_contents(base_path()."/Modules/{$this->module}/Http/Controllers/{$this->model}Controller.php", $file);
     }
 
