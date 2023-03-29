@@ -25,6 +25,7 @@
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">{{ $module }}</h3>
+            <a class="btn btn-primary" href="{{ route('module-generator.create') }}"><i class="fa fa-fw fa-plus"></i> Create</a>
         </div>
         <div class="block-content">
             <table class="table table-striped table-vcenter">
