@@ -31,7 +31,19 @@ class ModuleGeneratorController extends Controller
      */
     public function index(): Factory|View|Application
     {
-        $modules = config('project-modules');
+        $modules = [];
+
+        foreach(Module::collections() as $module) {
+            $modules[$module->getName()] = [];
+
+            $files = array_diff(scandir($module->getPath().'/Entities'), array('.', '..'));
+
+            foreach($files as $key => $value) {
+                if(strpos($value, ".php") !== false){
+                    $modules[$module->getName()][] = str_replace('.php', '', $value);
+                }
+            }
+        }
 
         return view('pages.module-generator.index', compact('modules'));
     }
@@ -41,7 +53,11 @@ class ModuleGeneratorController extends Controller
      */
     public function create(): View|Factory|Application
     {
-        $modules = array_keys(config('project-modules'));
+        $modules = [];
+
+        foreach(Module::collections() as $module) {
+            $modules[] = $module->getName();
+        }
 
         return view('pages.module-generator.create', compact('modules'));
     }
