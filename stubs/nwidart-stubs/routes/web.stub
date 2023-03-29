@@ -11,4 +11,6 @@
 |
 */
 
-	// module-generator
+Route::prefix('$LOWER_NAME$')->group(function() {
+    Route::get('/', '$STUDLY_NAME$Controller@index');
+});
