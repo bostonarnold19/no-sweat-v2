@@ -24,6 +24,7 @@
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">Users</h3>
+            <a class="btn btn-primary" href="{{ route('users.create') }}"><i class="fa fa-fw fa-plus"></i> Create</a>
         </div>
         <div class="block-content">
             <table class="table table-striped table-vcenter">
@@ -47,7 +48,7 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             <form action="{{ route('users.destroy', [$user->id]) }}" method="POST">
-                                <a class="btn btn-sm btn-primary " href="{{ route('users.show', [$user->id]) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                <a class="btn btn-sm btn-primary" href="{{ route('users.show', [$user->id]) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
                                 <a class="btn btn-sm btn-success" href="{{ route('users.edit', [$user->id]) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                 @csrf
                                 @method('DELETE')
