@@ -1,0 +1,22 @@
+<div class="form-check">
+    {{ Form::checkbox(
+        '{{NAME}}', 
+        null,
+        in_array(${{VARIABLE}}->{{NAME}}, [true, "1"]),
+        [
+            'class' => 'form-check-input' . ($errors->has('{{NAME}}') ? ' is-invalid' : ''), 
+            'placeholder' => '{{LABEL}}',
+            'required' => {{REQUIRED}},
+            'id' => '{{ID}}'
+        ]
+    ) }}
+    {{ Form::label(
+        '{{NAME}}', 
+        '{{LABEL}}',
+        [
+            'class' => 'form-check-label',
+            'for' => '{{ID}}'
+        ]
+    ) }}
+    {!! $errors->first('{{NAME}}', '<div class="invalid-feedback">:message</div>') !!}
+</div>

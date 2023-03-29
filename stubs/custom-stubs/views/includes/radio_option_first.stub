@@ -1,0 +1,21 @@
+    <div class="form-check">
+      {{ Form::radio(
+          '{{NAME}}', 
+          '{{VALUE}}',
+          ${{VARIABLE}}->{{NAME}} === '{{VALUE}}' ? true : false,
+          [
+              'class' => 'form-check-input' . ($errors->has('{{NAME}}') ? ' is-invalid' : ''), 
+              'required' => {{REQUIRED}},
+              'id' => '{{ID}}'
+          ]
+      ) }}
+      {{ Form::label(
+          '{{NAME}}', 
+          '{{LABEL}}',
+          [
+              'class' => 'form-check-label',
+              'for' => '{{ID}}'
+          ]
+      ) }}
+      {!! $errors->first('{{NAME}}', '<div class="invalid-feedback">:message</div>') !!}
+    </div>

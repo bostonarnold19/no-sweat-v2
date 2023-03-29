@@ -1,0 +1,7 @@
+<div class="form-group">
+  <label class="form-label">{{MAIN_LABEL}}</label>
+  <div class="space-y-2">
+    // radio-option-generator
+    
+  </div>
+</div>

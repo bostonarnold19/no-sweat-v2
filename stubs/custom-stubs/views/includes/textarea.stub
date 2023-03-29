@@ -1,0 +1,22 @@
+<div class="mb-4">
+    {{ Form::label(
+        '{{NAME}}', 
+        '{{LABEL}}', 
+        [
+            'class' => 'form-label',
+            'for' => '{{ID}}'
+        ]
+    ) }}
+    {{ Form::textarea(
+        '{{NAME}}', 
+        ${{VARIABLE}}->{{NAME}}, 
+        [
+            'class' => 'form-control' . ($errors->has('{{NAME}}') ? ' is-invalid' : ''), 
+            'placeholder' => '{{LABEL}}',
+            'required' => {{REQUIRED}},
+            'id' => '{{ID}}',
+            'rows' => 4
+        ]
+    ) }}
+    {!! $errors->first('{{NAME}}', '<div class="invalid-feedback">:message</div>') !!}
+</div>

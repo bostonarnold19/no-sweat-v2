@@ -1,0 +1,23 @@
+<div class="mb-4">
+    {{ Form::label(
+        '{{NAME}}', 
+        '{{LABEL}}', 
+        [
+            'class' => 'form-label',
+            'for' => '{{ID}}'
+        ]
+    ) }}
+    {{ Form::select(
+        '{{NAME}}', 
+        [
+            // select-option-generator
+        ],
+        ${{VARIABLE}}->{{NAME}}, 
+        [
+            'class' => 'form-control' . ($errors->has('{{NAME}}') ? ' is-invalid' : ''), 
+            'required' => {{REQUIRED}},
+            'id' => '{{ID}}'
+        ]
+    ) }}
+    {!! $errors->first('{{NAME}}', '<div class="invalid-feedback">:message</div>') !!}
+</div>
